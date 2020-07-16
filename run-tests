@@ -1,0 +1,19 @@
+#!/bin/bash
+
+get_script_folder() {
+    relative_path=$(dirname $0)
+    # requires python, but supports both mac and linux
+    abs_path=$(python -c 'import os,sys ; print(os.path.realpath(sys.argv[1]))' $relative_path)
+    echo ${abs_path}
+}
+
+project_root=$(get_script_folder)
+pushd ${project_root}
+source ${project_root}/intSights/bin/activate
+pushd ${project_root}/test/src/intsight_test/tests/system_tests/
+
+pytest_results=
+pytest -v -m system_tests
+echo ${pytest_results}
+exit $pytest_results
+
