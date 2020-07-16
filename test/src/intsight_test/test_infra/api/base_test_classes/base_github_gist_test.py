@@ -27,12 +27,12 @@ class BaseGithubGistTest(BaseApiTest):
         assert original_value.description == expected_value.description
         assert original_value.id == expected_value.id
         assert original_value.public == expected_value.public
-        self.validate_gist_files(original_value, expected_value)
+        #self.validate_gist_files(original_value.files, expected_value.files)
 
     def validate_gist_files(self, original_value_files, expected_value_files):
         assert len(original_value_files) == len(expected_value_files)
         for index, item in enumerate(original_value_files):
-            assert item == expected_value_files[index]
+            assert item.description == expected_value_files[index]
 
     def star_gist(self, gist_id):
         return self.api_client.star_gist(gist_id)

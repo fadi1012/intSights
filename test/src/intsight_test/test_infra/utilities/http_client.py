@@ -31,9 +31,8 @@ class HttpClient:
         return resp
 
     def post(self, url, data, params={}, headers={}, cookies={}):
-        if 'Content-Type' not in headers:
-            headers['Content-Type'] = 'application/json;charset=UTF-8'
-            data = json.dumps(data)
+        headers['Content-Type'] = 'application/json;charset=UTF-8'
+        data = json.dumps(data)
         req = dict(url=url, method='POST', params=params, data=data, headers=headers, cookies=cookies)
         # return self.send_request(req).resp_data
         resp = self.send_request(req)

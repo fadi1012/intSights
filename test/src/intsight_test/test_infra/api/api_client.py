@@ -7,27 +7,27 @@ class ApiClient:
     def __init__(self):
         self.__http_client = HttpClient()
         # self.token = self.__generate_auth_token()
-        self.token = "744988c97f6bc3bcb9019cf52814e04b0fc41572"
+        self.token = "794cc1c07037f5e56cccf0f944b5f42a06096ca5"
         self._oauth_token = {"Authorization": "bearer " + self.token}
 
     def __generate_auth_token(self, username, password):
         return
 
-    def __generate_user_gist_files(self, params):
+    def __generate_user_gist_files(self, params_dict):
         user_gists_files = []
-        for index in enumerate(params, start=1):
-            gistfile = params['gistfile' + str(index[0]) + '.txt']
+        for key in params_dict:
+            gistfile = params_dict[key]
             user_gists_files.append(GistFileData(filename=gistfile['filename'], type=gistfile['type'], language=gistfile['language'], raw_url=gistfile['raw_url'], size=gistfile['size']))
         return user_gists_files
 
     def __generate_user_gist(self, params):
-        files = self.__generate_user_gist_files(params=params['files'])
-        return UserGist(public=params['public'], description=params['description'], files=files, id=params['id'], version=params['version'] if 'version' in params else None)
+        files = self.__generate_user_gist_files(params_dict=params['files'])
+        return UserGist(public=params['public'], description=params['description'], files=files, id=params['id'], version=params['history'][0]['version'] if 'history' in params else None)
 
     def get_user_gist_files(self):
         resp = self.__http_client.get(url=config.USER_GISTS,
                                       headers=self._oauth_token)
-        return self.__generate_user_gist_files(params=resp[0]['files'])
+        return self.__generate_user_gist_files(params_dict=resp[0]['files'])
 
     def get_user_gists(self):
         resp = self.__http_client.get(url=config.USER_GISTS,
