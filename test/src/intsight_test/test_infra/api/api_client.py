@@ -6,8 +6,12 @@ from test.src.intsight_test.test_infra.utilities.http_client import HttpClient
 class ApiClient:
     def __init__(self):
         self.__http_client = HttpClient()
-        self.token = "025cdddd7d82ae54d3bccd6c2a9c5e538aca9d65"
+        # self.token = self.__generate_auth_token()
+        self.token = "744988c97f6bc3bcb9019cf52814e04b0fc41572"
         self._oauth_token = {"Authorization": "bearer " + self.token}
+
+    def __generate_auth_token(self, username, password):
+        return
 
     def __generate_user_gist_files(self, params):
         user_gists_files = []
