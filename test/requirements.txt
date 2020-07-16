@@ -5,4 +5,3 @@ pytest-forked==0.2
 pytest-html==1.19.0
 pytest-logger==0.5.1
 pytest-rerunfailures==4.1
-pytest-xdist==1.30.0h
