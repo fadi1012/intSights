@@ -42,6 +42,7 @@ class HttpClient:
     def patch(self, url, data, params={}, headers={}, cookies={}):
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json;charset=UTF-8'
+            headers['Accept'] = 'application/vnd.github.v3+json'
             data = json.dumps(data)
         req = dict(url=url, method='PATCH', params=params, data=data, headers=headers, cookies=cookies)
         # return self.send_request(req).resp_data
@@ -52,6 +53,7 @@ class HttpClient:
         req = dict(url=url, method='GET', params=params, headers=headers, cookies=cookies)
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json;charset=UTF-8'
+            headers['Accept'] = 'application/vnd.github.v3+json'
         if return_resp_data:
             return self.send_request(req).resp_data
         return self.send_request(req)

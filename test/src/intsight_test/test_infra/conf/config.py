@@ -1,4 +1,11 @@
 API_PROTOCOL = "https"
-HOST = "gorest.co.in"
-API_PREFIX = '%s://%s/public-api' % (API_PROTOCOL, HOST)
+HOST = "api.github.com"
+API_PREFIX = '%s://%s/gists' % (API_PROTOCOL, HOST)
+
+
+USER_GISTS = API_PREFIX
+UPDATE_USER_GIST = USER_GISTS + "/{}"
+GET_USER_GIST_REVISION = USER_GISTS + "/{}/{}"
+STAR_GIST = USER_GISTS + '/{}/start'
+DELETE_GIST = USER_GISTS + '/{}'
 
