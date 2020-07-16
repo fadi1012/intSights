@@ -11,6 +11,8 @@ project_root=$(get_script_folder)
 pushd ${project_root}
 source ${project_root}/intSights/bin/activate
 pushd ${project_root}/test/src/intsight_test/tests/system_tests/
+echo "project root is ${project_root}"
+export PYTHONPATH=${project_root}
 
 pytest_results=
 pytest -v -m system_tests

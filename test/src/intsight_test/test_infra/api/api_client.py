@@ -7,7 +7,7 @@ class ApiClient:
     def __init__(self):
         self.__http_client = HttpClient()
         # self.token = self.__generate_auth_token()
-        self.token = "794cc1c07037f5e56cccf0f944b5f42a06096ca5"
+        self.token = "1520ff65820fe568cac79c6307ce15e324dc9f18"
         self._oauth_token = {"Authorization": "bearer " + self.token}
 
     def __generate_auth_token(self, username, password):

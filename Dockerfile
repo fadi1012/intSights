@@ -4,8 +4,12 @@ WORKDIR /usr/src/app
 
 COPY test/src/intsight_test/tests/system_tests/test_github_gist.py /usr/src/app/test_github_gist.py
 
+COPY run-tests /usr/src/app/run-tests
+
 ADD test/requirements.txt /requirements.txt
+
+ENV PYTHONPATH="$PYTHONPATH:/intSights"
 
 RUN pip install -r /requirements.txt
 
-CMD [ "pytest", "./test_github_gist.py" ]
+CMD /usr/src/app/run-tests
